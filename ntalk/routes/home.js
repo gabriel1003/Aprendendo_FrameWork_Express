@@ -1,11 +1,14 @@
 
-var express = require('express');
-var router = express.Router();
-const path = require('path'); // Importe o módulo 'path'
+module.exports = function(app) {
+  const home = app.controllers.home;
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../views/views/home.html'));
-});
+  debug;
+  app.get('/', home.index);
+  app.post('/entrar', home.login);
+  app.get('/sair', home.logout);
 
-module.exports = router;
+  return {
+    get: app.get,
+    post: app.post
+  }
+};
