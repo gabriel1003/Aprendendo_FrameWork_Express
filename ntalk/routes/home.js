@@ -1,14 +1,6 @@
-
-module.exports = function(app) {
-  const home = app.controllers.home;
-
-
+module.exports = (app) => {
+  const { home } = app.controllers;
   app.get('/', home.index);
   app.post('/entrar', home.login);
   app.get('/sair', home.logout);
-
-  return {
-    get: app.get,
-    post: app.post
-  }
 };

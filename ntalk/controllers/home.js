@@ -1,29 +1,23 @@
-
-module.exports = function(app) {
-    
-
-const HomeController = {
+module.exports = (app) => {
+  const HomeController = {
     index(req, res) {
       res.render('home/index');
     },
     login(req, res) {
-      var email = req.body.usuario.email,
-        nome = req.body.usuario.nome;
+      const { usuario } = req.body;
+      const { email, nome } = usuario;
       if (email && nome) {
-        var usuario = req.body.usuario;
-        usuario['contatos'] = [];
+        usuario.contatos = [];
         req.session.usuario = usuario;
         res.redirect('/contatos');
       } else {
         res.redirect('/');
       }
     },
-    logout: function(req, res) {
+    logout(req, res) {
       req.session.destroy();
       res.redirect('/');
     }
   };
-
-  return HomeController; // Retorna o objeto HomeController apenas uma vez
+  return HomeController;
 };
- 

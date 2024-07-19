@@ -1,11 +1,12 @@
+const autenticar = require('../middlewares/autenticador');
 
-module.exports = function(app) {
-    const contatos = app.controllers.contatos;
-  
-    app.get('/contatos', contatos.index);
+module.exports = (app) => {
+  const { contatos } = app.controllers;
 
-    return {
-        get: app.get
-    };
-  };
-  
+  app.get('/contatos', autenticar, contatos.index);
+  app.get('/contato/:id', autenticar, contatos.show);
+  app.post('/contato', autenticar, contatos.create);
+  app.get('/contato/:id/editar', autenticar, contatos.edit);
+  app.put('/contato/:id', autenticar, contatos.update);
+  app.delete('/contato/:id', autenticar, contatos.destroy);
+};
