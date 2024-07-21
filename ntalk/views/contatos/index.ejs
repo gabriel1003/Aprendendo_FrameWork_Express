@@ -1,4 +1,4 @@
-<%- include('../header') %>
+<%- include('../header'); %>
 <header>
   <h2>Ntalk - Agenda de contatos</h2>
 </header>
@@ -15,21 +15,27 @@
       <tr>
         <th>Nome</th>
         <th>E-mail</th>
+        <th>Status</th>
         <th>Ação</th>
       </tr>
     </thead>
     <tbody>
-      <% contatos.forEach((contato, index) => { %>
+      <% contatos.forEach((contato) => { %>
         <tr>
           <td><%- contato.nome %></td>
           <td><%- contato.email %></td>
           <td>
-            <a href="/contato/<%- index %>">Detalhes</a>
+            <span id="notify_<%- contato.email %>">Offline</span>
+          </td>
+          <td>
+            <a href="/contato/<%- contato._id %>">Detalhes</a>
+            <a href="/chat" id="chat_<%- contato.email %>">Conversar</a>
           </td>
         </tr>
       <% }) %>
     </tbody>
   </table>
 </section>
-<%- include('../exit') %>
-<%- include('../footer') %>
+<%- include('notify_script'); %>
+<%- include('../exit'); %>
+<%- include('../footer'); %>

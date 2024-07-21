@@ -5,5 +5,4 @@ exports.notFound = (req, res) => {
 exports.serverError = (error, req, res, next) => {
   res.status(500);
   res.render('server-error', { message: error.message });
-  next(error);
 };
